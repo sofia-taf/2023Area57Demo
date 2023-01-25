@@ -1,0 +1,5 @@
+stock,taxa,variable,year,mean,sd,lower,upper,status
+Anodontostoma_chacunda,Anodontostoma_chacunda,b_div_bmsy,2019,0.848465836227335,0.246471523951853,0.576139484023285,1.25696849987992,Fully fished
+Mugilidae,Mugilidae,b_div_bmsy,2019,1.05701047163822,0.207320592438636,0.756918826447541,1.46192384421603,Fully fished
+Pellona_ditchela,Pellona_ditchela,b_div_bmsy,2019,0.855139262298074,0.241535729025208,0.583167273203982,1.25320198621531,Fully fished
+Tenualosa_toli,Tenualosa_toli,b_div_bmsy,2019,0.892436821906826,0.263225307672348,0.573307358140563,1.34047901937439,Fully fished
