@@ -8,15 +8,14 @@ library(SOFIA)
 suppressMessages(library(dplyr)) # filter, group_by, left_join, mutate, ...
 library(ggplot2)
 library(sraplus) # plot_driors
-library(tidyr)   # nest, pivot_longer
+library(tidyr)   # nest
 
 mkdir("data")
 
 ## Read catch data, convert to tibble (long format)
 catch <- read.taf("bootstrap/data/catch.csv")
 catch$Total <- NULL  # not used, not a stock
-catch <- pivot_longer(catch, !Year, "stock", values_to="capture")
-names(catch) <- tolower(names(catch))
+catch <- taf2long(catch, c("year", "stock", "capture"))
 
 ## Plot catches
 catch %>%
@@ -60,8 +59,7 @@ catch$taxa <- catch$stock
 
 ## Read effort data, combine catch and effort data
 effort <- read.taf("bootstrap/data/effort.csv")
-effort <- pivot_longer(effort, !Year, "stock", values_to="effort")
-names(effort) <- tolower(names(effort))
+effort <- taf2long(effort, c("year", "stock", "effort"))
 catch_effort <- addEffort(catch, effort, same.effort=TRUE)
 
 ## Create nested tibble with 'data' column (catch and effort)
