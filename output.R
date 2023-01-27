@@ -4,8 +4,8 @@
 ## After:  stock_tables/*.csv, current_status.csv, stock_timeseries.csv (output)
 
 library(TAF)
-suppressMessages(library(dplyr)) # case_when, count, group_by, select, ...
-library(tidyr) # pivot_wider, unnest
+suppressMessages(library(dplyr))  # case_when, count, filter, group_by, ...
+library(tidyr)  # pivot_wider, unnest
 
 mkdir("output")
 
@@ -14,7 +14,7 @@ stocks <- readRDS("model/results.rds")
 
 ## Categorize stock status by comparing B/Bmsy to 0.8 and 1.2
 current_status <- stocks %>%
-  select(stock, taxa, sraplus_summary) %>%
+  select(stock, sraplus_summary) %>%
   unnest(cols = sraplus_summary) %>%
   filter(variable == "b_div_bmsy") %>%
   mutate(status = case_when(mean > 1.2 ~ "Underfished",
